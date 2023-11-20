@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulário de Validação</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        form {
+            background-color: white;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            border-radius: 5px;
+            text-align: center;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            box-sizing: border-box;
+        }
+
+        button {
+            padding: 10px;
+            background-color: #4caf50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        p {
+            margin-top: 20px;
+            font-weight: bold;
+        }
+
+        .mensagem-positiva {
+            color: #4caf50;
+        }
+
+        .mensagem-negativa {
+            color: #f44336;
+        }
+    </style>
+</head>
+<body>
+
+    <form id="formulario">
+        <label for="campoA">Campo A:</label>
+        <input type="number" id="campoA" name="campoA" required>
+        <br>
+        <label for="campoB">Campo B:</label>
+        <input type="number" id="campoB" name="campoB" required>
+        <br>
+        <button type="button" onclick="validarFormulario()">Submeter</button>
+        <p id="mensagem"></p>
+    </form>
+
+    <script>
+        function validarFormulario() {
+            var campoA = parseFloat(document.getElementById('campoA').value);
+            var campoB = parseFloat(document.getElementById('campoB').value);
+
+            var mensagemElemento = document.getElementById('mensagem');
+
+            if (isNaN(campoA) || isNaN(campoB)) {
+                mensagemElemento.textContent = "Por favor, preencha ambos os campos com números.";
+                mensagemElemento.className = "mensagem-negativa";
+            } else if (campoB > campoA) {
+                mensagemElemento.textContent = "Formulário válido!";
+                mensagemElemento.className = "mensagem-positiva";
+            } else {
+                mensagemElemento.textContent = "Número B deve ser maior que o número A.";
+                mensagemElemento.className = "mensagem-negativa";
+            }
+        }
+    </script>
+
+</body>
+</html>
